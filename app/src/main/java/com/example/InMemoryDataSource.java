@@ -3,6 +3,7 @@ package com.example;
 import java.util.ArrayList;
 import java.util.List;
 
+// InMemoryDataSource that should be replaced later with real DB-calls over the network
 public class InMemoryDataSource {
 
     private List<Country> rawData;
@@ -84,8 +85,16 @@ public class InMemoryDataSource {
         return data;
     }
 
-    public List<Country> getDetailedViewOfData() {
-        return rawData;
+    public Country transform(BriefViewOfCountry briefViewOfCountry) {
+
+        Country targetElement = null;
+        for (int cursor = 0; cursor < rawData.size(); cursor++) {
+            if (briefViewOfCountry.getId() == rawData.get(cursor).getId()) {
+                targetElement = rawData.get(cursor);
+                break;
+            }
+        }
+        return targetElement;
     }
 
 }
