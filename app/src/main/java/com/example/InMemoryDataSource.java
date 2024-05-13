@@ -85,11 +85,11 @@ public class InMemoryDataSource {
         return data;
     }
 
-    public Country transform(BriefViewOfCountry briefViewOfCountry) {
+    public Country transform(int briefViewOfCountryId) {
 
         Country targetElement = null;
         for (int cursor = 0; cursor < rawData.size(); cursor++) {
-            if (briefViewOfCountry.getId() == rawData.get(cursor).getId()) {
+            if (briefViewOfCountryId == rawData.get(cursor).getId()) {
                 targetElement = rawData.get(cursor);
                 break;
             }

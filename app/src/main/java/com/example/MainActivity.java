@@ -1,6 +1,7 @@
 package com.example;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -27,19 +28,16 @@ public class MainActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 BriefViewOfCountry selectedElement = (BriefViewOfCountry) parent.getItemAtPosition(position);
-                /**
-                 * TODO:
-                 * =====
-                 * * put selected item in a Bundle to be seen in the next screen
-                 * * show the next screen of details-view
-                 *
-                 *
-                 * * details-screen:
-                 * *   onStarting the screen => transform briefView of the selectedElement into detailedView
-                 * *   then display the detailedView in a formatted TextView
-                 */
+                goToBriefViewOfCountry(selectedElement.getId());
             }
         });
+    }
+
+    private void goToBriefViewOfCountry(int selectedElementId) {
+
+        Intent intentOfDetailsViewScreen = new Intent(this, DetailsViewScreen.class);
+        intentOfDetailsViewScreen.putExtra("selectedElementId", selectedElementId);
+        startActivity(intentOfDetailsViewScreen);
     }
 
 }
